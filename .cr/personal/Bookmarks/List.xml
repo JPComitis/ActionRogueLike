@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root Type="DevExpress.CodeRush.Foundation.Markers.SolutionBookmarksContainer">
+  <Options Language="Neutral">
+    <Items>
+      <Item Id="{fb259ecb-9674-4ebb-9a6b-f9383be8faa6}">
+        <Id>1</Id>
+        <File>ActionRogueLike\Source\ActionRogueLike\Public\ICCharacter.h</File>
+        <Line>41</Line>
+        <ViewportTop>3</ViewportTop>
+        <ViewportTopMax>48</ViewportTopMax>
+        <TopLine>3</TopLine>
+      </Item>
+    </Items>
+  </Options>
+</Root>
