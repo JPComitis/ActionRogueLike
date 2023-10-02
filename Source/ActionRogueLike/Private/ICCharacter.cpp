@@ -56,6 +56,7 @@ void AICCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AICCharacter::Jump);
 	PlayerInputComponent->BindAction("PrimaryAttack", IE_Pressed, this, &AICCharacter::PrimaryAttack);
 
 }
@@ -80,6 +81,16 @@ void AICCharacter::MoveRight(float Value)
 
 	AddMovementInput(RightVector, Value);
 }
+
+void AICCharacter::Jump()
+{
+	if (CanJump())
+	{
+		FVector JumpImpulse = FVector(0.0f, 0.0f, JumpZVelocity);
+		LaunchCharacter(JumpImpulse, false, false);
+	}
+}
+
 
 
 void AICCharacter::PrimaryAttack()

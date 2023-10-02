@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,46 +5,48 @@
 #include "ICCharacter.generated.h"
 
 class UCameraComponent;
-class USpringArmComponent; 
+class USpringArmComponent;
 
 UCLASS()
 class ACTIONROGUELIKE_API AICCharacter : public ACharacter
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 protected:
 
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<AActor> ProjectileClass;
-
+    UPROPERTY(EditAnywhere)
+    TSubclassOf<AActor> ProjectileClass;
 
 public:
-	// Sets default values for this character's properties
-	AICCharacter();
+    // Sets default values for this character's properties
+    AICCharacter();
 
 protected:
 
-	UPROPERTY(VisibleAnywhere)
-	USpringArmComponent* SpringArmComp;
+    UPROPERTY(EditAnywhere, Category = "Jumping")
+    float JumpZVelocity = 500.0f; // Adjust this value to control jump height
 
-	UPROPERTY(VisibleAnywhere)
-	UCameraComponent* CameraComp;
+    UPROPERTY(VisibleAnywhere)
+    USpringArmComponent* SpringArmComp;
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+    UPROPERTY(VisibleAnywhere)
+    UCameraComponent* CameraComp;
 
-	void MoveForward(float Value);
+    // Called when the game starts or when spawned
+    virtual void BeginPlay() override;
 
-	void MoveRight(float Value);
+    void MoveForward(float Value);
 
-	void PrimaryAttack();
+    void MoveRight(float Value);
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+    void Jump(); 
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+    void PrimaryAttack();
 
-	
+public:
+    // Called every frame
+    virtual void Tick(float DeltaTime) override;
+
+    // Called to bind functionality to input
+    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 };
