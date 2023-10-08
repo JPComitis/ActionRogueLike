@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
+#include "PhysicsEngine/RadialForceComponent.h" // Include for URadialForceComponent
 #include "ICExplosiveBarrel.generated.h"
 
 UCLASS(Blueprintable, BlueprintType)
@@ -16,6 +17,10 @@ public:
 protected:
     UPROPERTY(EditAnywhere)
     UStaticMeshComponent* StaticMesh;
+
+    // Add Radial Force Component declaration
+    UPROPERTY(VisibleAnywhere)
+    URadialForceComponent* RadialForce;
 
     // Function declaration for the hit event
     UFUNCTION()

@@ -1,5 +1,6 @@
 #include "ICExplosiveBarrel.h"
-#include "Components/StaticMeshComponent.h"
+#include "GameFramework/Actor.h"
+#include "PhysicsEngine/RadialForceComponent.h"
 
 AICExplosiveBarrel::AICExplosiveBarrel()
 {
@@ -13,6 +14,13 @@ AICExplosiveBarrel::AICExplosiveBarrel()
     // Set up collision response
     StaticMesh->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
     StaticMesh->OnComponentHit.AddDynamic(this, &AICExplosiveBarrel::OnHit);
+
+    // Add Radial Force Component
+    RadialForce = CreateDefaultSubobject<URadialForceComponent>(TEXT("RadialForce"));
+    RadialForce->SetupAttachment(StaticMesh);
+    RadialForce->Radius = 500.0f; // Set the radius of the radial force
+    RadialForce->bImpulseVelChange = true;
+    RadialForce->bAutoActivate = false; // Radial force should not be automatically activated
 }
 
 void AICExplosiveBarrel::BeginPlay()
@@ -34,4 +42,10 @@ void AICExplosiveBarrel::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 {
     // Handle the hit event here
     // You can add any logic you want when the static mesh is hit
+
+    // Add fire impulse
+    StaticMesh->AddImpulse(NormalImpulse * 1000.0f); // You can adjust the multiplier as needed
+
+    // Activate Radial Force
+    RadialForce->FireImpulse();
 }
