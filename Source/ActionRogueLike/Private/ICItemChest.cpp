@@ -1,6 +1,9 @@
-// ICItemChest.cpp
+
+
+
 #include "ICItemChest.h"
 #include "Components/StaticMeshComponent.h"
+
 
 AICItemChest::AICItemChest()
 {
@@ -11,12 +14,13 @@ AICItemChest::AICItemChest()
 
     LidMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("LidMesh"));
     LidMesh->SetupAttachment(BaseMesh);
+
+    TargetPitch = -50;
 }
 
 void AICItemChest::Interact_Implementation(APawn* InstigatorPawn)
 {
-    // Implement the interaction logic here
-    // For example, you can open the chest, spawn items, etc.
+    LidMesh->SetRelativeRotation(FRotator(TargetPitch, 0, 0));
 }
 
 void AICItemChest::BeginPlay()

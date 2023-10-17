@@ -14,10 +14,15 @@ class ACTIONROGUELIKE_API AICItemChest : public AActor, public IICGamePlayInterf
     GENERATED_BODY()
 
 public:
-    // Sets default values for this actor's properties
-    AICItemChest();
+
+    UPROPERTY(EditAnywhere)
+    float TargetPitch;
+
+    void Interact_Implementation(APawn* InstigatorPawn);
+   
 
 protected:
+
     UPROPERTY(VisibleAnywhere)
     UStaticMeshComponent* BaseMesh;
 
@@ -31,6 +36,6 @@ public:
     // Called every frame
     virtual void Tick(float DeltaTime) override;
 
-    // Implement the Interact function from the interface
-    virtual void Interact_Implementation(APawn* InstigatorPawn) override;
+    AICItemChest();
+
 };
